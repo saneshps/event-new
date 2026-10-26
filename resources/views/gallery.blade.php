@@ -13,25 +13,29 @@
             </ul>
         </div>
     </div>
-    <section class="py-5">
+    <section class="gallery-page py-5">
         <div class="container">
             <div class="row g-4 popup-gallery">
                 @forelse ($galleryItems as $item)
                     <div class="col-sm-6 col-lg-4">
-                        <figure class="card h-100 border-0 shadow-sm overflow-hidden mb-0">
+                        <figure class="gallery-card mb-0">
                             @php($imageUrl = str_starts_with($item->image_path, 'assets/') ? asset($item->image_path) : asset('storage/'.$item->image_path))
-                            <a href="{{ $imageUrl }}" class="popup-img" title="{{ $item->title }}" aria-label="View {{ $item->title }} full size">
-                                <img src="{{ $imageUrl }}" alt="{{ $item->title }}" class="w-100" style="height:260px;object-fit:cover">
+                            <a href="{{ $imageUrl }}" class="gallery-media popup-img" title="{{ $item->title }}" aria-label="View {{ $item->title }} full size">
+                                <img src="{{ $imageUrl }}" alt="{{ $item->title }}" loading="lazy">
+                                <span class="gallery-overlay" aria-hidden="true">
+                                    <span class="gallery-zoom"><i class="far fa-expand"></i></span>
+                                </span>
                             </a>
-                            @if ($item->description)
-                                <figcaption class="card-body"><h3 class="h5">{{ $item->title }}</h3><p class="mb-0">{{ $item->description }}</p></figcaption>
-                            @else
-                                <figcaption class="visually-hidden">{{ $item->title }}</figcaption>
-                            @endif
+                            <figcaption class="gallery-caption">
+                                <h3>{{ $item->title }}</h3>
+                                @if ($item->description)
+                                    <p>{{ $item->description }}</p>
+                                @endif
+                            </figcaption>
                         </figure>
                     </div>
                 @empty
-                    <div class="col-12 text-center"><p>Our event gallery will be updated soon.</p></div>
+                    <div class="col-12 text-center"><p class="gallery-empty">Our event gallery will be updated soon.</p></div>
                 @endforelse
             </div>
         </div>

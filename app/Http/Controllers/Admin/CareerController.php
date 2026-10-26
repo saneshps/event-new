@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobApplication;
 use App\Models\JobOpening;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,6 +20,10 @@ class CareerController extends Controller
             'editRoute' => 'admin.careers.edit',
             'deleteRoute' => 'admin.careers.destroy',
             'type' => 'careers',
+            'applications' => JobApplication::query()
+                ->with('jobOpening')
+                ->latest()
+                ->get(),
         ]);
     }
 
