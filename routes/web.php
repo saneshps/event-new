@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PublicPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +16,6 @@ Route::get('/gallery', [PublicPageController::class, 'gallery'])->name('gallery'
 Route::get('/careers', [PublicPageController::class, 'careers'])->name('careers');
 Route::view('/contact-us', 'contact')->name('contact');
 Route::post('/contact-us', [ContactController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
-Route::post('/careers/apply', [JobApplicationController::class, 'store'])->middleware('throttle:5,1')->name('careers.apply');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {

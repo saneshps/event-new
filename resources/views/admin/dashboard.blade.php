@@ -25,7 +25,6 @@
         ['Services', $serviceCount, 'admin.services.index', 'far fa-calendar-star', 'orange'],
         ['Gallery images', $galleryCount, 'admin.gallery.index', 'far fa-images', 'purple'],
         ['Career openings', $careerCount, 'admin.careers.index', 'far fa-briefcase', 'blue'],
-        ['Job applications', $applicationCount, 'admin.careers.index', 'far fa-file-user', 'orange'],
     ] as [$label, $count, $route, $icon, $color])
         <div class="col-sm-6 col-xl-4">
             <a class="admin-card admin-stat-card" href="{{ route($route) }}">

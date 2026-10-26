@@ -41,11 +41,9 @@
                                     </div>
                                 @endif
                                 <p>{{ $career->description }}</p>
-                                <button class="career-link career-apply-trigger" type="button"
-                                    data-job-id="{{ $career->id }}" data-job-title="{{ $career->title }}"
-                                    aria-controls="job-application-modal">
+                                <a class="career-link" href="{{ route('contact') }}">
                                     Apply now <i class="far fa-arrow-right"></i>
-                                </button>
+                                </a>
                             </div>
                         </article>
                     </div>
@@ -62,63 +60,6 @@
         </div>
     </section>
 </main>
-
-<div class="career-modal" id="job-application-modal" role="dialog" aria-modal="true"
-    aria-labelledby="job-application-title" aria-hidden="true">
-    <div class="career-modal-backdrop" data-modal-close></div>
-    <div class="career-modal-dialog">
-        <div class="career-modal-content">
-            <button type="button" class="career-modal-close" data-modal-close aria-label="Close application form">
-                <i class="far fa-times"></i>
-            </button>
-            <div class="career-modal-heading">
-                <span class="career-modal-icon"><i class="far fa-paper-plane"></i></span>
-                <div>
-                    <span class="careers-eyebrow">Take the next step</span>
-                    <h2 id="job-application-title">Apply <span>now</span></h2>
-                    <p>Tell us a little about yourself and our team will be in touch.</p>
-                </div>
-            </div>
-            <form method="POST" action="{{ route('careers.apply') }}" class="career-application-form">
-                @csrf
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="application-name">Name <span>*</span></label>
-                        <input id="application-name" type="text" name="name" value="{{ old('name') }}"
-                            placeholder="Your full name" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="application-phone">Phone <span>*</span></label>
-                        <input id="application-phone" type="tel" name="phone" value="{{ old('phone') }}"
-                            placeholder="Your phone number" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="application-email">Email <span>*</span></label>
-                        <input id="application-email" type="email" name="email" value="{{ old('email') }}"
-                            placeholder="you@example.com" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="application-job">Select job</label>
-                        <select id="application-job" name="job_opening_id">
-                            <option value="">Choose a position</option>
-                            @foreach ($careers as $career)
-                                <option value="{{ $career->id }}" @selected((string) old('job_opening_id') === (string) $career->id)>
-                                    {{ $career->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <label for="application-message">Message</label>
-                        <textarea id="application-message" name="message" rows="4"
-                            placeholder="Share a little about your experience (optional)">{{ old('message') }}</textarea>
-                    </div>
-                </div>
-                <button type="submit" class="theme-btn career-submit">Send application <i class="far fa-paper-plane"></i></button>
-            </form>
-        </div>
-    </div>
-</div>
 
 <style>
     .careers-section {
@@ -226,11 +167,6 @@
     }
 
     .career-link {
-        border: 0;
-        background: transparent;
-        padding: 0;
-        cursor: pointer;
-        font-family: inherit;
         display: inline-flex;
         align-items: center;
         gap: 9px;
@@ -265,149 +201,6 @@
         font-size: 22px;
     }
 
-    .career-modal {
-        position: fixed;
-        z-index: 1055;
-        inset: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .career-modal.is-open {
-        display: flex;
-    }
-
-    .career-modal-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(1, 5, 76, .72);
-        backdrop-filter: blur(4px);
-    }
-
-    .career-modal-dialog {
-        position: relative;
-        width: min(680px, 100%);
-        max-height: calc(100vh - 40px);
-        overflow-y: auto;
-        border-radius: 18px;
-        background: #fff;
-        box-shadow: 0 25px 80px rgba(0, 0, 0, .25);
-    }
-
-    .career-modal-content {
-        position: relative;
-        padding: 38px;
-    }
-
-    .career-modal-close {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border: 0;
-        border-radius: 50%;
-        background: #f2f4fa;
-        color: var(--color-dark);
-        cursor: pointer;
-        transition: .2s ease;
-    }
-
-    .career-modal-close:hover {
-        background: var(--theme-color);
-        color: #fff;
-    }
-
-    .career-modal-heading {
-        display: flex;
-        align-items: flex-start;
-        gap: 16px;
-        margin-bottom: 28px;
-        padding-right: 35px;
-    }
-
-    .career-modal-icon {
-        display: inline-flex;
-        flex: 0 0 52px;
-        align-items: center;
-        justify-content: center;
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
-        background: rgba(254, 136, 19, .13);
-        color: var(--theme-color);
-        font-size: 21px;
-    }
-
-    .career-modal-heading .careers-eyebrow {
-        margin-bottom: 4px;
-    }
-
-    .career-modal-heading h2 {
-        margin-bottom: 5px;
-        color: var(--color-dark);
-        font-size: 28px;
-    }
-
-    .career-modal-heading h2 span {
-        color: var(--theme-color);
-    }
-
-    .career-modal-heading p {
-        margin: 0;
-        color: var(--body-text-color);
-        font-size: 14px;
-    }
-
-    .career-application-form label {
-        display: block;
-        margin-bottom: 7px;
-        color: var(--color-dark);
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    .career-application-form label span {
-        color: #dc3545;
-    }
-
-    .career-application-form input,
-    .career-application-form select,
-    .career-application-form textarea {
-        width: 100%;
-        border: 1px solid #e3e6ef;
-        border-radius: 8px;
-        padding: 12px 14px;
-        color: var(--color-dark);
-        background: #fbfcff;
-        outline: 0;
-        transition: border-color .2s ease, box-shadow .2s ease;
-    }
-
-    .career-application-form input:focus,
-    .career-application-form select:focus,
-    .career-application-form textarea:focus {
-        border-color: var(--theme-color);
-        box-shadow: 0 0 0 3px rgba(254, 136, 19, .12);
-    }
-
-    .career-application-form textarea {
-        resize: vertical;
-    }
-
-    .career-submit {
-        margin-top: 22px;
-    }
-
-    body.career-modal-open {
-        overflow: hidden;
-    }
-
     @media (max-width: 575px) {
         .career-card-top,
         .career-card-body {
@@ -417,68 +210,6 @@
         .career-card-body {
             min-height: 0;
         }
-
-        .career-modal {
-            padding: 12px;
-        }
-
-        .career-modal-dialog {
-            max-height: calc(100vh - 24px);
-        }
-
-        .career-modal-content {
-            padding: 28px 20px 24px;
-        }
-
-        .career-modal-heading {
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-
-        .career-modal-icon {
-            flex-basis: 42px;
-            width: 42px;
-            height: 42px;
-            font-size: 17px;
-        }
-
-        .career-modal-heading h2 {
-            font-size: 24px;
-        }
     }
 </style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const modal = document.getElementById('job-application-modal');
-        const jobSelect = document.getElementById('application-job');
-        if (!modal || !jobSelect) return;
-
-        const openModal = function (trigger) {
-            jobSelect.value = trigger.dataset.jobId || '';
-            modal.classList.add('is-open');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('career-modal-open');
-            document.getElementById('application-name').focus();
-        };
-        const closeModal = function () {
-            modal.classList.remove('is-open');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('career-modal-open');
-        };
-
-        document.querySelectorAll('.career-apply-trigger').forEach(function (trigger) {
-            trigger.addEventListener('click', function () { openModal(trigger); });
-        });
-        modal.querySelectorAll('[data-modal-close]').forEach(function (element) {
-            element.addEventListener('click', closeModal);
-        });
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-        });
-        @if ($errors->any())
-            openModal({ dataset: { jobId: '{{ old('job_opening_id') }}' } });
-        @endif
-    });
-</script>
 @endsection
