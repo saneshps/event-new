@@ -5,44 +5,47 @@
 @section('content')
 <main class="main">
 
-        <!-- breadcrumb -->
-        <div class="site-breadcrumb" style="background: url({{ asset('assets/img/breadcrumb/01.jpg') }})">
+        <!-- page hero -->
+        <div class="about-page-hero" style="background-image: url({{ asset('assets/img/breadcrumb/01.jpg') }})">
             <div class="container">
-                <h2 class="breadcrumb-title">About Us</h2>
-                <ul class="breadcrumb-menu">
+                <div class="about-page-hero-content">
+                    <span class="about-eyebrow">BIG SCREEN EVENTS LLC</span>
+                    <h1>We create moments<br><span>worth remembering.</span></h1>
+                    <p>From the first idea to the final applause, we turn your vision into an experience people talk about.</p>
+                </div>
+                <ul class="about-breadcrumb">
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li class="active">About Us</li>
                 </ul>
             </div>
         </div>
-        <!-- breadcrumb end -->
+        <!-- page hero end -->
 
         <!-- about area -->
-        <div class="about-area py-120">
+        <div class="about-area about-story py-120">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="about-left wow fadeInRight" data-wow-delay=".25s">
                             <div class="about-img">
-                                <img class="img-1" src="{{ asset('assets/img/about/01.jpg') }}" alt="">
+                                <img class="img-1" src="{{ asset('assets/img/about/01.jpg') }}" alt="Guests enjoying a Big Screen Events experience">
                             </div>
                             <div class="about-experience">
-                                <span> 06 </span>
-                                <h5>Years Of <br> Experience</h5>
+                                <span>06</span>
+                                <h5>Years of<br>experience</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="about-right wow fadeInLeft" data-wow-delay=".25s">
                             <div class="site-heading mb-3">
-                                <h2 class="site-title">
-                                    About Us
-                                </h2>
+                                <span class="section-kicker">Our story</span>
+                                <h2 class="site-title">More than an event.<br><span>A lasting impression.</span></h2>
                                 <div class="site-shadow-text wow fadeInRight" data-wow-delay=".35s">About Us</div>
                             </div>
                             <p class="about-text"> Big Screen Events LLC was founded in 2019 by four passionate partners
                                 who shared
-                                a common dreamâ€”to create unforgettable events and exceptional experiences that bring
+                                a common dream - to create unforgettable events and exceptional experiences that bring
                                 people together.
                             </p>
                             <p class="about-text mb-2"> What began as a vision among four ambitious entrepreneurs has
@@ -338,29 +341,41 @@
             </div>
         </div>
         <!-- counter area end -->
-        <section class="vision-mision pt-80 pb-80">
+        <section class="vision-mision about-purpose pt-80 pb-80">
             <div class="container">
+                <div class="about-section-intro">
+                    <span class="section-kicker">The direction we follow</span>
+                    <h2 class="site-title">Purpose with every <span>production.</span></h2>
+                </div>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-12">
-                        <div class="terms-content">
-                            <h3>Mission</h3>
+                        <div class="terms-content about-purpose-card mission-card">
+                            <div class="purpose-icon"><i class="far fa-bullseye-arrow"></i></div>
+                            <div>
+                                <span class="purpose-label">01 / Mission</span>
+                                <h3>Make every moment matter.</h3>
                             <p>
                                 To ignite excitement and create unforgettable moments by delivering
-                                seamless, high-impact events that exceed expectations. Weâ€™re
-                                committed to excellence in every detailâ€”from concept development
+                                seamless, high-impact events that exceed expectations. We're
+                                committed to excellence in every detail - from concept development
                                 and logistics to on-site coordination and post-event analysis
                             </p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-12">
-                        <div class="terms-content">
-                            <h3>Vision</h3>
+                        <div class="terms-content about-purpose-card vision-card">
+                            <div class="purpose-icon"><i class="far fa-eye"></i></div>
+                            <div>
+                                <span class="purpose-label">02 / Vision</span>
+                                <h3>Set the standard for extraordinary.</h3>
                             <p>
                                 To be the go-to partner for organizations and individuals seeking
                                 bold, cutting-edge events that inspire, connect and captivate
                                 audiences around the world.
 
                             </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,4 +384,3 @@
 
     </main>
 @endsection
-
